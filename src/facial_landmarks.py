@@ -26,8 +26,8 @@ import yaml
 sys.path.append(os.path.join(os.path.dirname(__file__), 'utils'))
 sys.path.append(os.path.join(os.path.dirname(__file__), 'visualization'))
 
-from utils.face_utils import FaceUtils
-from visualization.visualizer import LandmarkVisualizer
+from src.utils.face_utils import FaceUtils
+from src.visualization.visualizer import LandmarkVisualizer
 
 
 class FacialLandmarkDetector:
