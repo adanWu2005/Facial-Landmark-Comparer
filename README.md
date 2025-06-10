@@ -47,6 +47,7 @@ python src/facial_landmarks.py --image path/to/image.jpg
 - **AVIF images are NOT supported.**
 - The model file (`shape_predictor_68_face_landmarks.dat`) is required in the `models/` directory.
 - Results are saved in the same directory as the input image with suffixes.
+- The Light/Dark mode, Language and Screen Studio features you see in the image are built-in features of Gradio's web interface.
 
 ## File Structure
 - `src/app.py` — Gradio web interface
