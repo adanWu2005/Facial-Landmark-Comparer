@@ -1,0 +1,166 @@
+# Configuration file for OpenCV Facial Landmark Detection
+
+# Model settings
+model:
+  # Path to the dlib facial landmark predictor model
+  shape_predictor_path: "models/shape_predictor_68_face_landmarks.dat"
+  
+  # Face detector type: 'hog', 'haar', or 'dnn'
+  face_detector: "hog"
+  
+  # Alternative models (for future extension)
+  # shape_predictor_5_path: "models/shape_predictor_5_face_landmarks.dat"
+  # dnn_model_path: "models/opencv_face_detector.pbtxt"
+  # dnn_weights_path: "models/opencv_face_detector_uint8.pb"
+
+# Image processing settings
+processing:
+  # Resize input images to this width (maintains aspect ratio)
+  # Set to null to disable resizing
+  resize_width: 500
+  
+  # Number of image pyramid layers for face detection
+  # Higher values may detect more faces but increase computation time
+  upsampling_layers: 1
+  
+  # Minimum face size as percentage of image width
+  min_face_size: 0.05
+  
+  # Maximum face size as percentage of image width  
+  max_face_size: 0.8
+
+# Visualization settings
+visualization:
+  # Colors in BGR format
+  face_box_color: [0, 255, 0]      # Green
+  landmark_color: [0, 0, 255]      # Red
+  
+  # Individual region colors (BGR format)
+  region_colors:
+    jaw: [255, 255, 0]             # Cyan
+    right_eyebrow: [0, 255, 255]   # Yellow
+    left_eyebrow: [0, 255, 255]    # Yellow
+    nose: [255, 0, 255]            # Magenta
+    right_eye: [0, 255, 0]         # Green
+    left_eye: [0, 255, 0]          # Green
+    mouth: [0, 0, 255]             # Red
+  
+  # Drawing parameters
+  landmark_radius: 2
+  box_thickness: 2
+  contour_thickness: 1
+  font_scale: 0.5
+  
+  # Overlay settings
+  overlay_alpha: 0.3
+
+# Output settings
+output:
+  # Whether to save annotated images by default
+  save_annotated: true
+  
+  # Output image format
+  output_format: "jpg"
+  
+  # Image quality (for JPEG, 0-100)
+  quality: 95
+  
+  # Whether to save landmarks as JSON by default
+  save_landmarks_json: false
+  
+  # Whether to save facial measurements
+  save_measurements: false
+  
+  # Directory structure for batch processing
+  create_subdirs: true
+  subdir_names:
+    annotated: "annotated"
+    landmarks: "landmarks"
+    measurements: "measurements"
+    extracted_regions: "regions"
+
+# Analysis settings
+analysis:
+  # Whether to calculate facial measurements
+  calculate_measurements: true
+  
+  # Whether to analyze facial features
+  analyze_features: true
+  
+  # Whether to extract facial regions
+  extract_regions: false
+  
+  # Regions to extract when extract_regions is true
+  regions_to_extract:
+    - "left_eye"
+    - "right_eye"
+    - "nose"
+    - "mouth"
+  
+  # Padding around extracted regions (pixels)
+  region_padding: 10
+
+# Performance settings
+performance:
+  # Use multiple threads for batch processing
+  use_multithreading: true
+  
+  # Number of worker threads (null for auto-detect)
+  num_threads: null
+  
+  # Batch size for processing multiple images
+  batch_size: 10
+  
+  # Memory optimization settings
+  optimize_memory: false
+  
+  # Enable progress reporting
+  show_progress: true
+
+# Logging settings
+logging:
+  # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  level: "INFO"
+  
+  # Log file path (null to disable file logging)
+  file_path: null
+  
+  # Log format
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # Enable console logging
+  console: true
+
+# Advanced settings
+advanced:
+  # Face detection confidence threshold (for DNN models)
+  detection_confidence: 0.7
+  
+  # Non-maximum suppression threshold
+  nms_threshold: 0.4
+  
+  # Enable face alignment before landmark detection
+  enable_face_alignment: false
+  
+  # Face alignment target size
+  alignment_size: [150, 150]
+  
+  # Enable landmark smoothing for video processing
+  enable_smoothing: false
+  
+  # Smoothing factor (0.0 - 1.0)
+  smoothing_factor: 0.3
+
+# Validation settings
+validation:
+  # Validate landmark detection results
+  validate_results: true
+  
+  # Minimum number of landmarks required for valid detection
+  min_landmarks: 68
+  
+  # Maximum allowed landmark coordinate deviation (percentage of face size)
+  max_coordinate_deviation: 0.1
+  
+  # Enable landmark quality scoring
+  enable_quality_scoring: false
