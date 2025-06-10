@@ -1,10 +1,7 @@
 import gradio as gr
 import cv2
 import numpy as np
-from facial_landmarks import FacialLandmarkDetector
-
-# Initialize detector
-facial_detector = FacialLandmarkDetector()
+from src.facial_landmarks import FacialLandmarkDetector
 
 def process_image(image):
     if image is None:
@@ -19,6 +16,7 @@ def process_image(image):
     if w > 800:
         scale = 800 / w
         image = cv2.resize(image, (800, int(h * scale)))
+    facial_detector = FacialLandmarkDetector()
     faces = facial_detector.detect_faces(image)
     annotated = image.copy()
     white_img = 255 * np.ones_like(image)
@@ -32,11 +30,10 @@ def process_image(image):
         white_img = facial_detector.visualizer.draw_landmark_numbers(white_img, landmarks, color=(0,0,0))
     return annotated, white_img
 
-def interface(img1, img2, webcam_img):
+def interface(img1, img2, _):
     out1, white1 = process_image(img1) if img1 is not None else (None, None)
     out2, white2 = process_image(img2) if img2 is not None else (None, None)
-    out3, white3 = process_image(webcam_img) if webcam_img is not None else (None, None)
-    return out1, white1, out2, white2, out3, white3
+    return out1, white1, out2, white2
 
 with gr.Blocks() as demo:
     gr.Markdown("""
@@ -58,4 +55,4 @@ with gr.Blocks() as demo:
         white2 = gr.Image(label="Photo 2 Landmarks on White")
     btn.click(lambda img1, img2: interface(img1, img2, None), inputs=[img1, img2], outputs=[out1, white1, out2, white2])
 
-demo.launch()  
+demo.launch() 
