@@ -31,7 +31,7 @@ Facial landmark detection using dlib and OpenCV, with a modern Gradio web interf
 ### Web Interface
 Run the Gradio app:
 ```bash
-python src/app.py
+python app.py
 ```
 - Open the link shown in your terminal (usually http://127.0.0.1:7860/)
 - Upload two images or use your webcam
